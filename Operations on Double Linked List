@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<stdlib.h>// Type Content here...
+struct node{
+int data;
+struct node*pre;
+struct node*next;
+};
+typedef struct node *NODE;
+struct node*create(int val){
+	struct node*newnode=(struct node *)malloc(sizeof(struct node));
+	newnode->data=val;
+	newnode->pre=NULL;
+	newnode->next=NULL;
+	return newnode;
+}
+struct node*insertAtBeginInDLL(struct node*head,int val){
+	struct node*Node=create(val);
+	if(head==NULL){
+		return Node;
+	}else{
+		Node->next=head;
+		head->pre=Node;
+		head=Node;
+	}
+	return head;
+}
+void traverseListInDLL(struct node*first){
+	struct node*head=first;
+	while(head!=NULL){
+		printf("%d <--> ",head->data);
+		head=head->next;
+	}
+	printf("NULL\n");
+}
+int searchPosOfEleInDLL(struct node*first,int val){
+	struct node *head=first;
+}
