@@ -1,0 +1,36 @@
+/*
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure
+struct Node {
+    int score;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int score) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->score = score;
+    newNode->next = NULL;
+    return newNode;
+}
+int main() {
+    int N, targetScore;
+    scanf("%d", &N);
+    struct Node* head = NULL;
+
+    for (int i = 0; i < N; i++) {
+        int score;
+        scanf("%d", &score);
+        head = insertEnd(head, score);
+    }
+    scanf("%d", &targetScore);
+    
+    displayList(head);
+    head = deleteNode(head, targetScore);
+    displayList(head);
+    return 0;
+}
+*/
+#include <stdio.h>
