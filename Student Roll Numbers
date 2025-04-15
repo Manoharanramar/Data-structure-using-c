@@ -1,0 +1,57 @@
+/*
+        new_node->data = data_list[i];
+        new_node->next = *head;  // New node points to head
+        current->next = new_node; // Previous node points to new node
+        current = new_node;       // Move current to new node
+    }
+}
+
+// Function to display the circular linked list
+void displayCircularLinkedList(Node* head) {
+    if (head == NULL) {
+        printf("The circular linked list is empty.\n");
+        return;
+    }
+
+    Node* current = head;
+    do {
+        printf("%d -> ", current->data);
+        current = current->next;
+    } while (current != head);
+    printf("\n");
+}
+
+// Main function to handle input and output
+int main() {
+    int n;
+
+    // Read the number of students
+    scanf("%d", &n);
+
+    // Read the student IDs
+    int* data_list = (int*)malloc(n * sizeof(int));
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &data_list[i]);
+    }
+
+    Node* head = NULL;
+
+    // Create and display the circular linked list
+    createCircularLinkedList(&head, data_list, n);
+    displayCircularLinkedList(head);
+
+    // Free allocated memory
+    Node* current = head;
+    Node* next_node;
+    if (head != NULL) {
+        do {
+            next_node = current->next;
+            free(current);
+            current = next_node;
+        } while (current != head);
+    }
+    free(data_list);
+
+    return 0;
+}
+
