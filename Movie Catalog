@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<string.h>
+struct Movie {
+    char title[100];
+    int releaseYear;
+    struct Movie* next;
+    struct Movie* prev;
+};
+
+// Function to create a new movie node
+struct Movie* createMovieNode(const char title[], int releaseYear) {
+struct Movie*newNode=(struct Movie*)malloc(sizeof(struct Movie));
+if(newNode==NULL){
+fprintf(stderr,"Memory allocation failed\n");
+exit(EXIT_FAILURE);
+}
+ strncpy(newNode->title, title, sizeof(newNode->title) - 1);
+    newNode->title[sizeof(newNode->title) - 1] = '\0'; 
+    newNode->releaseYear = releaseYear;
+    newNode->prev = NULL;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert a new movie at the end of the double-linked li
+void insertMovieEnd(struct Movie** head,const char title[], int releaseYear) {
+ struct Movie* newNode=createMovieNode(title,releaseYear);
+if(*head==NULL){
+*head=newNode;
+}else{
+ struct Movie* temp = *head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+
+}
+*/
