@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct Event {
+    char name[50];
+    char date[11]; // Format: YYYY-MM-DD
+    struct Event* prev;
+    struct Event* next;
+} Event;
+
+Event* head = NULL;
+Event* tail = NULL;
+
+void addEvent(const char* name, const char* date) {
+    Event* newEvent = (Event*)malloc(sizeof(Event));
+    strcpy(newEvent->name, name);
+    strcpy(newEvent->date, date);
+    newEvent->prev = tail;
+    newEvent->next = NULL;
+
+    if (tail) {
+        tail->next = newEvent;
+    } else {
+        head = newEvent; // First element
+    }
+    tail = newEvent; // Update tail to new event
+}
+
+void deleteFirstLast() {
+    if (head == NULL) {
+        return; // List is empty
+    }
+
+    // Delete first event
+    Event* toDelete = head;
