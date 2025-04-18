@@ -1,0 +1,36 @@
+struct polynomial{
+int coeff;
+int exp;
+struct polynomial* next;
+};
+typedef struct polynomial* poly;
+poly addTerm(poly head,poly term){
+	if(head==NULL){
+		return term;
+	}
+	poly temp=head;
+	poly prev=NULL;
+	while(temp!=NULL && temp->exp > term->exp){
+		prev = temp;
+		temp=temp->next;
+	}
+	if(temp!=NULL && temp->exp == term->exp){
+		temp->coeff += term->coeff;
+		free(term);
+	}else{
+		term->next=temp;
+		if(prev == NULL){
+			head=term;
+		}else{
+			prev->next=term;
+		}
+	}
+	return head;
+}
+poly add(poly head1,poly head2){
+	poly result=NULL;
+	poly temp1=head1;
+	poly temp2=head2;
+	while(temp1 != NULL && temp2!= NULL){
+		poly term = (poly)malloc(sizeof(struct polynomial));
+		if(temp1->exp > temp2->exp){
