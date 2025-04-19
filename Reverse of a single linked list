@@ -1,0 +1,57 @@
+#include <stdio.h>
+        next = current->next; // Store next node
+        current->next = prev; // Reverse the link
+        prev = current;       // Move prev up
+        current = next;       // Move to next node
+    }
+    *head = prev; // Update the head to the new first node
+}
+// Function to print the linked list
+void print_list(Node* head) {
+    if (head == NULL) {
+        printf("List is empty\n");
+        return;
+    }
+    Node* temp = head;
+    while (temp != NULL) {
+        printf("%d", temp->data);
+        temp = temp->next;
+        if (temp != NULL) {
+            printf(" -> ");
+        }
+    }
+    printf(" -> \n");
+}
+int main() {
+    int N;
+    scanf("%d", &N);
+
+    Node* head = NULL;
+    
+    // Read node data and create linked list
+    for (int i = 0; i < N; i++) {
+        int data;
+        scanf("%d", &data);
+        append(&head, data);
+    }
+  // Print the original linked list
+    printf("Linked list: ");
+    print_list(head);
+    
+    // Reverse the linked list
+    reverse(&head);
+    
+    // Print the reversed linked list
+    printf("Reversed Linked list: ");
+    print_list(head);
+
+    // Free the allocated memory
+    Node* temp;
+    while (head != NULL) {
+        temp = head;
+        head = head->next;
+        free(temp);
+    }
+
+    return 0;
+}
