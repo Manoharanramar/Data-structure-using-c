@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+	int data;
+	struct node *next;
+};
+typedef struct node *NODE;
+NODE create(int data){
+	NODE new=(NODE)malloc(sizeof(struct node));
+	new->data=data;
+	new->next=NULL;
+	return new;
+}
+NODE insert(NODE head, int value){
+	NODE newNode=create(value);
+	if(head==NULL)
+		return newNode;
+	newNode->next=head;
+	head=newNode;
+	return head;
+
+}
+int occurance_key(NODE head, int key){
+	int occurance=0;
+	if(head==NULL)
+		return 0;
+	NODE temp=head;
+	while(temp!=NULL){
+		if(temp->data==key)
+			occurance++;
+		temp=temp->next;
+	}
+	return occurance;
+}
+void traverse(NODE first){
+	NODE head=first;
