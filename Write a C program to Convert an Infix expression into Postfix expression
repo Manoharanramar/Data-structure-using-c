@@ -1,0 +1,36 @@
+/*#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<ctype.h>
+#define MAX 20
+char stack[MAX];
+
+int top = -1;
+int isEmpty() {
+return top==-1;
+}
+void push(char x) {
+if(top<MAX-1){
+stack[++top]=x;
+}else{
+printf("stack overflow\n");
+}
+}
+char pop() {
+if(!isEmpty()) {
+return stack[top--];
+}
+else{
+printf("Stack underflow\n");
+return '\0';}
+}
+int priority(char x) {
+switch(x){
+	case 'x':
+	case '-':
+return 1;
+	case '*':
+	case '/':
+return 2;
+	case '^':
+return 3;
