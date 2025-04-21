@@ -1,0 +1,14 @@
+#include<stdio.h>
+int main(){
+	int a;
+	scanf("%d",&a);
+	int array[a];
+	int front=0;
+	int rear=a;
+	for(int i=front;i<rear;i++){
+		scanf("%d",&array[i]);
+	}
+	for(int i=rear-1;i>=front;i--){
+		printf("%d ",array[i]);
+	}
+}
