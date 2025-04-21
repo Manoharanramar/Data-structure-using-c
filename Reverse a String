@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define MAX_SIZE 100
+#include "stack.h"
+
+char* reverseMessage(const char* input_str) {
+
+	// complete the function body
+   char temp[MAX_SIZE];
+	scanf("%s",temp);
+	input_str=temp;
+	char*reve=(char*)malloc(sizeof(int)*strlen(input_str));
+	struct Stack stack;
+	initStack(&stack);
+	for(int i=0;input_str[i]!= '\0';i++){
+		push(&stack,input_str[i]);
+	}
+	for(int i=0;input_str[i]!='\0';i++){
+		reve[i]=pop(&stack);
+	}
+	return reve;
+   
+}
+
+int main() {
+    char* input_message = reverseMessage("");
+    printf("%s\n", input_message);
+    free(input_message);
+    return 0;
+}
