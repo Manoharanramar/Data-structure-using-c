@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+#define MAX_SIZE 100
+#include "stack.h"
+// Function to simulate undo operation
+void undo(struct Stack* undoStack, struct Stack* redoStack, char* text) {
+     if(strlen(text)==0){
+		printf("Undo not possible\n");
+		return;
+	}
+	if(!isFull(undoStack)){
+		push(undoStack,text[strlen(text)-1]);
+		text[strlen(text)-1]='\0';
+	}
+	printf("Current Text: ");
+	for(int i=0;i<strlen(text);i++){
+		printf("%c",text[i]);
+	}
+	printf("\n");
+   
+    
+}
+// Function to simulate redo operation
+void redo(struct Stack* undoStack, struct Stack* redoStack, char* text) {
+	if(isEmpty(undoStack)){
+		printf("Redo not possible\n");
+		return;
+	}
+	text[strlen(text)]=pop(undoStack);
+	printf("Current Text: ");
+	for(int i=0;i<strlen(text);i++){
+	      printf("%c",text[i]);
+		}
+	printf("\n");
+   
+}
