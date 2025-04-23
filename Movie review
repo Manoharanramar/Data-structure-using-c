@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define MAX_MOVIES 5
+#define MAX_NAME_LENGTH 50
+// Structure for a movie rating
+struct MovieRating {
+    char name[MAX_NAME_LENGTH];
+    int rating;
+};
+// Structure for the movie recommendation stack
+struct MovieStack {
+    struct MovieRating ratings[MAX_MOVIES];
+    int top;
+};
+// Function to initialize the movie stack
+void initializeStack(struct MovieStack* stack) {
+    stack->top = -1;
+}
+// Function to check if the stack is empty
+int isEmpty(struct MovieStack* stack) {
+    return stack->top == -1;
+}
+// Function to check if the stack is full
+int isFull(struct MovieStack* stack) {
+    return stack->top == MAX_MOVIES - 1;
+}
+// Function to push a movie rating onto the stack
+void push(struct MovieStack* stack, char name[], int rating) {
+
+	if(isFull(stack)){
+	printf("Stack is full\n");
+	return;
+}
+	stack->top++;
+
