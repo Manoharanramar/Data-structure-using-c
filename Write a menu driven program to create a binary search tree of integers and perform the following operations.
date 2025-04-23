@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct node{
+int data;
+struct node *left;
+struct node *rigth;
+}Node;
+Node *create(int data){
+	Node *New=(Node *)malloc(sizeof(Node));
+	New->data=data;
+	New->left=NULL;
+	New->rigth=NULL;
+	return New;
+}
+void store(Node *root,Node *New){
+	if(root->data>New->data){
+		if(root->left==NULL){
+			root->left=New;
+			return;
+		}
+		store((root->left),New);
+	}else{
+		if(root->rigth==NULL){
+			root->rigth=New;
+			return;
+		}
+		store((root->rigth),New);
+	}
+}
+void insert(Node **root,int data){
+	Node *New = create(data);
+if(*root==NULL){
+		*root=New;
+		return;
+	}
+	store(*root,New);
