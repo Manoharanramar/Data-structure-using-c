@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+typedef struct TreeNode {
+    int value;
+    struct TreeNode *left;
+    struct TreeNode *right;
+} TreeNode;
+TreeNode* createNode(int value) {
+    TreeNode* newNode = (TreeNode*)malloc(sizeof(TreeNode));
+    newNode->value = value;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+TreeNode* insertLevelOrder(char arr[][10], int index, int n) {
+    if (index >= n || strcmp(arr[index], "none") == 0) {
+        return NULL;
+    }
+    
+    TreeNode* root = createNode(atoi(arr[index]));
+    root->left = insertLevelOrder(arr, 2 * index + 1, n);
+    root->right = insertLevelOrder(arr, 2 * index + 2, n);
+    
+    return root;
+}
+int convertToSumTree(TreeNode* node) {
+    if (node == NULL) {
+        return 0;
+    }
+    
+    int leftSum = convertToSumTree(node->left);
+    int rightSum = convertToSumTree(node->right);
+    
+    int oldValue = node->value;
+    node->value = leftSum + rightSum;
+       return oldValue + node->value;
+}
