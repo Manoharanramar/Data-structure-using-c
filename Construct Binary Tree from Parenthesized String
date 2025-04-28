@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct TreeNode {
+    int value;
+    struct TreeNode *left;
+    struct TreeNode *right;
+} TreeNode;
+TreeNode* createNode(int value) {
+    TreeNode* newNode = (TreeNode*)malloc(sizeof(TreeNode));
+    newNode->value = value;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+TreeNode* parseTree(const char** str) {
+    if (**str == '\0') return NULL;
+    int value = **str - '0';  
+    TreeNode* root = createNode(value);
+    (*str)++; 
+    if (**str == '(') {
+        (*str)++; 
+        root->left = parseTree(str);
+        if (**str == ')') (*str)++; 
+    }
+   if (**str == '(') {
+        (*str)++; 
+        root->right = parseTree(str);
+        if (**str == ')') (*str)++;
+    }
+
+    return root;
+}
+void preorderTraversal(TreeNode* node) {
+    if (node != NULL) {
+        printf("%d ", node->value);
+        preorderTraversal(node->left);
+        preorderTraversal(node->right);
+  }
+}
+int main() {
+    char input[100];
+   scanf("%s", input);
+const char* str = input;
+    TreeNode* root = parseTree(&str);
+preorderTraversal(root);
+    printf("\n");
+
+    return 0;
+}
